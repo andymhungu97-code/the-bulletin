@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact The Bulletin</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Montserrat:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="nav"></div>
+  <div class="container">
+    <h1>Contact The Bulletin Team</h1>
+    <p>Have an exclusive you want to share with the school? An article you would like to have published? Or just looking to advertise your products? Reach out for stories, corrections, or feedback.</p>
+    <p>Email: vimbaichapwanya86@gmail.com</p>
+    <p>Location: Kadoma, Zimbabwe</p>
+  </div>
+
+  <script>
+    fetch("nav.html")
+      .then(r => r.text())
+      .then(html => document.getElementById("nav").innerHTML = html);
+  </script>
+</body>
+</html>

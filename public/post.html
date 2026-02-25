@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Post</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Montserrat:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="nav"></div>
+  <div class="container" id="post"></div>
+
+  <script>
+    fetch("nav.html")
+      .then(r => r.text())
+      .then(html => document.getElementById("nav").innerHTML = html);
+
+    const backendUrl = "http://localhost:5000";
+
+    async function loadPost() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      const res = await fetch(`${backendUrl}/api/posts/${id}`);
+      const p = await res.json();
+      document.getElementById("post").innerHTML = `
+        <h1>${p.title}</h1>
+        <p>${p.category} | ${new Date(p.createdAt).toLocaleString()}</p>
+        <p>${p.content}</p>
+      `;
+    }
+
+    loadPost();
+  </script>
+
+<div id="gallery"></div>
+
+<script>
+async function loadPost() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const res = await fetch(`/api/posts/${id}`);
+  const p = await res.json();
+
+  document.getElementById("post").innerHTML = `
+    <h1>${p.title}</h1>
+    <p>${p.category} | ${new Date(p.createdAt).toLocaleString()}</p>
+    <p>${p.content}</p>
+  `;
+
+  if (p.images && p.images.length) {
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = p.images.map(img => `<img src="${img}" style="max-width:200px;margin:5px;">`).join("");
+  }
+}
+loadPost();
+</script>
+
+  <div id="gallery"></div>
+
+  <script>
+  async function loadPost() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const res = await fetch(`${backendUrl}/api/posts/${id}`);
+    const p = await res.json();
+  
+    document.getElementById("post").innerHTML = `
+      <h1>${p.title}</h1>
+      <p>${p.category} | ${new Date(p.createdAt).toLocaleString()}</p>
+      <p>${p.content}</p>
+    `;
+  
+    if (p.images && p.images.length > 0) {
+      const gallery = document.getElementById("gallery");
+      gallery.innerHTML = p.images.map(img => `<img src="${img}" style="max-width:200px;margin:5px;">`).join("");
+    }
+  }
+  
+  loadPost();
+  </script>
+</body>
+</html>

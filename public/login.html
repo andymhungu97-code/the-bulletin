@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Montserrat:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="nav"></div>
+  <div class="container">
+    <h1>Admin Login</h1>
+    <input type="email" id="email" placeholder="Email"><br><br>
+    <input type="password" id="password" placeholder="Password"><br><br>
+    <button id="loginBtn">Login</button>
+  </div>
+
+  <script>
+    fetch("nav.html").then(r=>r.text()).then(html=>document.getElementById("nav").innerHTML=html);
+
+    const backendUrl = "http://localhost:5000";
+    document.getElementById("loginBtn").addEventListener("click", async () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const res = await fetch(`${backendUrl}/api/auth/login`, {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({ email, password })
+        });
+        if (!res.ok) {
+          const err = await res.json();
+          alert(err.message || "Login failed");
+          return;
+        }
+        const data = await res.json();
+        localStorage.setItem("token", data.token);
+        window.location.href = "dashboard.html";
+      } catch (e) {
+        alert("Server not running");
+      }
+    });
+  </script>
+</body>
+</html>
