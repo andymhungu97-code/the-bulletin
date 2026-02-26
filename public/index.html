@@ -19,7 +19,7 @@
       .then(r => r.text())
       .then(html => document.getElementById("nav").innerHTML = html);
 
-    const backendUrl = "http://localhost:5000";
+    const backendUrl = windows.location.origin;
 
     async function loadPosts() {
       const res = await fetch(`${backendUrl}/api/posts`);
