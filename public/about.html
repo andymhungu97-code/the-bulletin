@@ -9,7 +9,7 @@
   <div id="nav"></div>
   <div class="container">
     <h1>About The Bulletin</h1>
-    <p>The Bulletin is the official online publication of Jameson High School. Designed, built and maintained by Anderson "Moxie" Mhungu, run and managed by Vimbai Chipwanya.</p>
+    <p>The Bulletin is the official online publication of Jameson High School. Designed, built and maintained by Anderson "Moxie" Mhungu, run and managed by Vimbai Chapwanya.</p>
     <h2>Mission</h2>
     <p>To provide accurate, timely, and engaging coverage...</p>
     <h2>Vision</h2>
@@ -17,9 +17,21 @@
   </div>
 
   <script>
-    fetch("nav.html")
-      .then(r => r.text())
-      .then(html => document.getElementById("nav").innerHTML = html);
+      fetch("nav.html")
+  .then(r => r.text())
+  .then(html => {
+    document.getElementById("nav").innerHTML = html;
+
+    const toggle = document.querySelector(".menu-toggle");
+    const navItems = document.querySelector(".nav_items");
+
+    if (toggle && navItems) {
+      toggle.addEventListener("click", () => {
+        navItems.classList.toggle("active");
+        toggle.classList.toggle("active");
+      });
+    }
+  });
   </script>
 </body>
 </html>

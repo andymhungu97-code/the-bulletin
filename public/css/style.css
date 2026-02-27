@@ -93,6 +93,10 @@ nav a {
   color: yellow;
 }
 
+.bar {
+  display: none;
+}
+
 #logo {
     font-size: 30px;
     font-weight: 800;
@@ -122,14 +126,14 @@ nav a {
     text-decoration: none;
   }
   
-  h1, h2, h3 {
-    font-family: 'Montserrat', Arial, sans-serif;
-    margin: 10px 0;
+ h2 {
+    font-weight: 400;
   }
 
   h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 10px 0;
     padding-top: 30px;
-    padding-bottom: 15px;
   }
 
   main {
@@ -243,6 +247,7 @@ button:hover {
   background: #9ebdff;
 }
 
+
 /* ===== FORM INPUTS ===== */
 
 input, textarea {
@@ -319,53 +324,97 @@ textarea {
     }
   }
 
-  /* ===== HAMBURGER BUTTON ===== */
+/* =============================
+   HAMBURGER BASE
+   ============================= */
 
-.menu-toggle {
-  display: none;
-  font-size: 26px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-/* ===== MOBILE MODE ===== */
-
-@media (max-width: 768px) {
-
-  nav {
-    padding: 15px 20px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav_items {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-
-    background: linear-gradient(135deg, #9ebdff, #9ebdff);
+   .menu-toggle {
+    display: none;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
-
-    padding: 20px 0;
-
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
   }
-
-  .nav_items a {
-    padding: 10px 0;
-    font-size: 16px;
+  
+  .menu-toggle span {
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    transition: 0.3s ease;
   }
+  
+  /* =============================
+     MOBILE MODE
+     ============================= */
+  
+  @media (max-width: 768px) {
+  
+    nav {
+      padding: 12px 30px;
+      position: relative;
+    }
+  
+    .menu-toggle {
+      display: flex;
+      border-radius: 10px;
+    }
 
-  .nav_items.active {
-    max-height: 400px;
+    #menu-toggle {
+      display: flex;
+      background: rgb(255, 171, 35);
+      
+    }
+
+    #menu-toggle:hover {
+      display: flex;
+      background: rgb(255, 171, 35);
+      opacity: 0.7;
+    }
+  
+    /* COMPLETELY HIDE nav_items */
+    .nav_items {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+  
+      background: linear-gradient(135deg, rgb(25, 75, 146), rgb(44, 132, 255));
+  
+      justify-content: center;
+      flex-direction: flex;
+      align-items: center;
+      gap: 20px;
+  
+      padding: 25px 0;
+  
+      display: none;   /* fully hidden */
+    }
+  
+    .nav_items.active {
+      display: flex;   /* shown when active */
+      transition: 0.3s ease;
+
+    }
+  
+    .nav_items a {
+      font-size: 18px;
+      padding: 10px 0;
+    }
+  
+    /* Animate hamburger to X */
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+  
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+  
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
   }
-}
