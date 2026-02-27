@@ -15,18 +15,7 @@
   </div>
 
   <script>
-    fetch("nav.html")
-  .then(r => r.text())
-  .then(html => {
-    document.getElementById("nav").innerHTML = html;
-
-    const toggle = document.querySelector(".menu-toggle");
-    const navItems = document.querySelector(".nav_items");
-
-    toggle.addEventListener("click", () => {
-      navItems.classList.toggle("active");
-    });
-  });
+    fetch("nav.html").then(r=>r.text()).then(html=>document.getElementById("nav").innerHTML=html);
 
     const backendUrl = window.location.origin;
     document.getElementById("loginBtn").addEventListener("click", async () => {
