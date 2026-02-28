@@ -4,20 +4,27 @@ import path from "path";
 import Post from "../models/Post.js";
 import { verifyToken } from "../middleware/auth.js";
 
+import { v2 as cloudinary } from "cloudinary";
+import { CloundinaryStorage } from "multer-storage-cloudinary";
+
 const router = express.Router();
 
 /* =========================
-   MULTER CONFIGURATION
+   CLOUDINARY CONFIGURATION
 ========================= */
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/uploads/");
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "the-bulletin",
+    allowed_formats: ["jpg", "jpeg", "png", "webp"],
   },
-  filename: (req, file, cb) => {
-    const uniqueName = Date.now() + "-" + file.originalname;
-    cb(null, uniqueName);
-  }
 });
 
 const upload = multer({ storage });
@@ -62,7 +69,7 @@ router.post("/", verifyToken, upload.array("images", 10), async (req, res) => {
     const { title, category, content } = req.body;
 
     const imagePaths = req.files && req.files.length > 0
-      ? req.files.map(file => `/uploads/${file.filename}`)
+      ? req.files.map(file => file.path)
       : [];
 
     const newPost = new Post({
