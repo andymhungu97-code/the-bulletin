@@ -5,7 +5,7 @@ import Post from "../models/Post.js";
 import { verifyToken } from "../middleware/auth.js";
 
 import { v2 as cloudinary } from "cloudinary";
-import { CloundinaryStorage } from "multer-storage-cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
 
 const router = express.Router();
 
