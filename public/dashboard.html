@@ -22,7 +22,7 @@
   </div>
 
   <script>
-    fetch("nav.html")
+fetch("nav.html")
   .then(r => r.text())
   .then(html => {
     document.getElementById("nav").innerHTML = html;
@@ -31,6 +31,7 @@
     const navItems = document.querySelector(".nav_items");
 
     toggle.addEventListener("click", () => {
+      toggle.classList.toggle("active");
       navItems.classList.toggle("active");
     });
   });

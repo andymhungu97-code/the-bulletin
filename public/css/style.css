@@ -262,68 +262,7 @@ input, textarea {
 textarea {
   min-height: 120px;
 }
-
-/* ===========================
-   MOBILE RESPONSIVE (XS)
-   =========================== */
-
-   @media (max-width: 480px) {
-
-    nav {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 15px 20px;
-    }
   
-    .logo {
-      margin-bottom: 10px;
-    }
-  
-    #logo {
-      font-size: 18px;
-    }
-  
-    #logo2 {
-      font-size: 10px;
-    }
-  
-    .nav_items {
-      width: 100%;
-      flex-direction: column;
-      gap: 12px;
-    }
-  
-    .nav_items a {
-      width: 100%;
-      padding: 8px 0;
-    }
-
-    .container {
-      padding: 20px 15px;
-    }
-  
-    h1 {
-      font-size: 22px;
-    }
-  
-    h2 {
-      font-size: 18px;
-    }
-
-    .post-card {
-      padding: 15px;
-      border-radius: 12px;
-    }
-  
-    .post-card h2 {
-      font-size: 18px;
-    }
-  
-    .post-card p {
-      font-size: 14px;
-    }
-  }
-
 /* =============================
    HAMBURGER BASE
    ============================= */
@@ -347,35 +286,24 @@ textarea {
     transition: 0.3s ease;
   }
   
-  /* =============================
-     MOBILE MODE
-     ============================= */
-  
-  @media (max-width: 768px) {
-  
+/* =============================
+   MODERN MOBILE NAV
+   ============================= */
+
+   @media (max-width: 768px) {
+
     nav {
-      padding: 12px 30px;
+      padding: 15px 20px;
       position: relative;
     }
   
+    /* Show hamburger */
     .menu-toggle {
       display: flex;
-      border-radius: 10px;
-    }
-
-    #menu-toggle {
-      display: flex;
-      background: rgb(255, 171, 35);
-      
-    }
-
-    #menu-toggle:hover {
-      display: flex;
-      background: rgb(255, 171, 35);
-      opacity: 0.7;
+      z-index: 1100;
     }
   
-    /* COMPLETELY HIDE nav_items */
+    /* Hide nav items by default */
     .nav_items {
       position: absolute;
       top: 100%;
@@ -384,30 +312,28 @@ textarea {
   
       background: linear-gradient(135deg, rgb(25, 75, 146), rgb(44, 132, 255));
   
-      justify-content: center;
-      flex-direction: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 25px;
   
-      padding: 25px 0;
+      padding: 30px 0;
   
-      display: none;   /* fully hidden */
+      display: none;
     }
   
     .nav_items.active {
-      display: flex;   /* shown when active */
-      transition: 0.3s ease;
-
+      display: flex;
+      animation: slideDown 0.3s ease forwards;
     }
   
     .nav_items a {
       font-size: 18px;
-      padding: 10px 0;
+      padding: 12px 0;
     }
   
-    /* Animate hamburger to X */
+    /* Hamburger animation */
     .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: rotate(45deg) translate(6px, 6px);
     }
   
     .menu-toggle.active span:nth-child(2) {
@@ -416,5 +342,16 @@ textarea {
   
     .menu-toggle.active span:nth-child(3) {
       transform: rotate(-45deg) translate(6px, -6px);
+    }
+  
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }

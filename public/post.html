@@ -10,9 +10,19 @@
   <div class="container" id="post"></div>
 
   <script>
-    fetch("nav.html")
-      .then(r => r.text())
-      .then(html => document.getElementById("nav").innerHTML = html);
+fetch("nav.html")
+  .then(r => r.text())
+  .then(html => {
+    document.getElementById("nav").innerHTML = html;
+
+    const toggle = document.querySelector(".menu-toggle");
+    const navItems = document.querySelector(".nav_items");
+
+    toggle.addEventListener("click", () => {
+      toggle.classList.toggle("active");
+      navItems.classList.toggle("active");
+    });
+  });
 
     const backendUrl = window.location.origin;
 
